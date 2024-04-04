@@ -3,10 +3,8 @@ package com.libreria.models;
 import com.libreria.models.bases.IadministrarBiblioteca;
 import com.libreria.models.bases.Recurso;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Libreria implements IadministrarBiblioteca {
@@ -23,12 +21,8 @@ public class Libreria implements IadministrarBiblioteca {
 
     }
     @Override
-    public void buscarTitulo(String titulo) {
-        if (inventario.get(titulo)!=null){
-            System.out.println("Se encontro una coincidencia: "+inventario.get(titulo));
-        }else {
-            System.out.println("No se encontró ninguna coincidencia");
-        }
+    public Recurso buscarTitulo(String titulo) {
+        return inventario.get(titulo);
     }
 
     @Override
@@ -47,6 +41,16 @@ public class Libreria implements IadministrarBiblioteca {
         }else {
             System.out.println("No se encontró ninguna coincidencia");
         }
+    }
+    public Recurso buscarIbsn(int isbn) {
+        Recurso recurso = null;
+        for (HashMap.Entry<String, Recurso> entry : inventario.entrySet()) {
+            if (isbn == entry.getValue().getIsbn()) {
+                recurso = entry.getValue();
+            }
+        }
+        return recurso;
+
     }
 
     @Override

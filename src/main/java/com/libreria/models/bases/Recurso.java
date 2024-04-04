@@ -1,12 +1,10 @@
 package com.libreria.models.bases;
 
-import com.libreria.models.MetodosEspeciales;
+import com.libreria.scripts.MetodosEspeciales;
 
-import java.time.LocalDate;
+public class Recurso {
 
-public abstract class Recurso {
-
-    static int contadorIsbn = 0;
+    private static int contadorIsbn = 0;
     protected String titulo;
     protected String autor;
     protected int isbn;
@@ -14,6 +12,7 @@ public abstract class Recurso {
     protected int anhoPublicacion;
     protected double precio;
     protected String tipoRecurso;
+    protected EstadosLibros estadoLibro = EstadosLibros.DISPONIBLE;
 
     public Recurso(String titulo, String autor, String editorial, int anhoPublicacion, double precio, String tipoRecurso){
         this.isbn = ++contadorIsbn;
@@ -23,6 +22,14 @@ public abstract class Recurso {
         this.anhoPublicacion = anhoPublicacion;
         this.precio = precio;
         this.tipoRecurso = tipoRecurso;
+    }
+
+    public EstadosLibros getEstadoLibro() {
+        return estadoLibro;
+    }
+
+    public void setEstadoLibro(EstadosLibros estadoLibro) {
+        this.estadoLibro = estadoLibro;
     }
 
     public String getTitulo() {
@@ -89,6 +96,7 @@ public abstract class Recurso {
         sb.append(", Año de publicación: ").append(anhoPublicacion);
         sb.append(", Precio: $").append(precio);
         sb.append(", Tipo de recurso: ").append(tipoRecurso);
+        sb.append(", Estado: ").append(estadoLibro);
         sb.append('}');
         return sb.toString();
     }

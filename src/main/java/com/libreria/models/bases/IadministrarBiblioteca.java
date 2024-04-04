@@ -5,7 +5,7 @@ import java.util.HashMap;
 public interface IadministrarBiblioteca {
     HashMap<String, Recurso> inventario = null;
     void agregar(Recurso recurso);
-    void buscarTitulo(String titulo);
+    Recurso buscarTitulo(String titulo);
     void buscarPorAutor(String autor);
     void mostrarInventario();
 }
