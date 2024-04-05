@@ -59,12 +59,15 @@ public class Libreria implements IadministrarBiblioteca {
             for (Map.Entry<String, Recurso> entry: inventario.entrySet()){
                 String key = entry.getKey();
                 Recurso value = entry.getValue();
-                System.out.println(value);
+                System.out.println(" "+value);
             }
             System.out.println("Hay " + inventario.size() +" registros en total" );
         }else{
             System.out.println("Aun no se han agregado libros al inventario.");
         }
 
+    }
+    public void eliminarRecurso(Recurso recurso){
+        inventario.remove(recurso.getTitulo());
     }
 }

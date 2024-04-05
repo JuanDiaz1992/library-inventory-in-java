@@ -34,8 +34,18 @@ public class GestorUsuariosController {
         int id = scanner.nextInt();
         Usuario usuario = GestorUsuariosController.consultarUsuarioPorId(id);
         if (usuario != null){
-            System.out.println("Usuario "+usuario.getNombre()+" fue eliminado correctamente.");
-            usuarioList.remove(usuario);
+            System.out.println("Estás seguro que desea eliminar a "+usuario.getNombre());
+            System.out.println("1. Confirmar");
+            System.out.println("2. Cancelar");
+            System.out.print("Selecciona una opción: ");
+            int opcion = scanner.nextInt();
+            if (opcion == 1){
+                System.out.println("Usuario "+usuario.getNombre()+" fue eliminado correctamente.");
+                usuarioList.remove(usuario);
+            }else {
+                System.out.println("Solicitud cancelada.");
+            }
+
 
         }else {
             System.out.println("El usuario no existe.");
@@ -84,15 +94,17 @@ public class GestorUsuariosController {
     }
     public static void cambiarEstado(){
         Usuario usuario = consultarUsuarioPorId();
-        System.out.println("Ingrese 1 para activar o 0 para desactivar");
+        System.out.println(usuario.getNombre());
+        System.out.println("Ingrese 1 para activar o 0 para suspender");
         int opcion = scanner.nextInt();
         Boolean estado;
         if (opcion == 1){
             estado = true;
+            System.out.println("Usuario Activado");
         }else {
             estado = false;
+            System.out.println("Usuario suspendido");
         }
-
         if (usuario != null){
             usuario.setEstadoCuenta(estado);
         }else{
@@ -112,6 +124,7 @@ public class GestorUsuariosController {
             System.out.println("Lista de usuarios");
             for (Usuario usuario: usuarioList){
                 System.out.println(usuario);
+                System.out.println("Cantidad de usuarios registrados: "+usuarioList.size());
             }
         }else{
             System.out.println("No hay usuarios registrados");

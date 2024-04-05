@@ -89,14 +89,14 @@ public class Recurso {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Recurso{");
-        sb.append("Título: '").append(titulo).append('\'');
+        sb.append("Isbn: ").append(isbn).append('\'');;
+        sb.append(", Título: '").append(titulo).append('\'');
         sb.append(", Autor: '").append(autor).append('\'');
-        sb.append(", Isbn: ").append(isbn);
         sb.append(", Editorial: '").append(editorial).append('\'');
-        sb.append(", Año de publicación: ").append(anhoPublicacion);
-        sb.append(", Precio: $").append(precio);
-        sb.append(", Tipo de recurso: ").append(tipoRecurso);
-        sb.append(", Estado: ").append(estadoLibro);
+        sb.append(", Año de publicación: ").append(anhoPublicacion).append('\'');;
+        sb.append(", Precio: $").append(precio).append('\'');;
+        sb.append(", Tipo de recurso: ").append(tipoRecurso).append('\'');;
+        sb.append(", Estado: ").append(estadoLibro).append('\'');;
         sb.append('}');
         return sb.toString();
     }

@@ -83,7 +83,7 @@ public class Prestamo {
         final StringBuilder sb = new StringBuilder("Prestamo{");
         sb.append(recurso.getTipoRecurso()).append(": ").append(recurso.getTitulo());
         sb.append(", ISBN ").append(recurso.getTipoRecurso()).append(": ").append(recurso.getIsbn());
-        sb.append(", Usuario: ").append(usuario.getId());
+        sb.append(", ID Usuario: ").append(usuario.getId());
         sb.append(", Días en prestamo: ").append(contadorDias);
         sb.append(", Estado: ").append(tieneMulta? "Tiene Multa":"Aun no tiene multa");
         if (tieneMulta){

@@ -30,8 +30,9 @@ public class Main {
             System.out.println("2) Buscar por Título");
             System.out.println("3) Buscar por Autor");
             System.out.println("4) Mostrar inventario");
-            System.out.println("5) Gestión de préstamos");
-            System.out.println("6) Gestión de usuario");
+            System.out.println("5) Gestionar Recurso");
+            System.out.println("6) Gestión de préstamos");
+            System.out.println("7) Gestión de usuario");
             System.out.println("0) Salir");
             System.out.print("Elija una opción: ");
             option = scanner.nextInt();
@@ -57,13 +58,30 @@ public class Main {
                     MetodosEspeciales.pressEnter();
                     break;
                 case 5:
+                    System.out.println(" ////////////////");
+                    System.out.println(" Gestionar Libro");
+                    System.out.println(" 1. Editar Recurso");
+                    System.out.println(" 2. Eliminar Recurso");
+                    System.out.print("Elija una opción: ");
+                    int optionRecurso = scanner.nextInt();
+                    if (optionRecurso == 1){
+                        RecursosController.editarRecurso(libreria);
+                    } else if (optionRecurso == 2) {
+                        RecursosController.eliminarRecurso(libreria);
+                    }else {
+                        System.out.println("Opción invalida");
+                    }
+
+                    break;
+                case 6:
                     int opcionPrestamos;
                     do {
-                        System.out.println("Gestionar prestamos de recursos");
-                        System.out.println("1. Realizar prestamo");
-                        System.out.println("2. Devolver");
-                        System.out.println("3. Ver estado de prestamo");
-                        System.out.println("0. Volver atrás");
+                        System.out.println(" ////////////////");
+                        System.out.println(" Gestionar prestamos de recursos");
+                        System.out.println(" 1. Realizar prestamo");
+                        System.out.println(" 2. Devolver");
+                        System.out.println(" 3. Ver estado de prestamo");
+                        System.out.println(" 0. Volver atrás");
                         System.out.print("Elija una opción: ");
                         opcionPrestamos = scanner.nextInt();
                         switch (opcionPrestamos){
@@ -89,20 +107,20 @@ public class Main {
 
                     }while (opcionPrestamos != 0);
                     break;
-                case 6:
+                case 7:
                     int optionUser;
                     do {
-                        System.out.println("////////////////");
-                        System.out.println("Sistema de gestión de usuarios");
-                        System.out.println("1. Agregar usuario");
-                        System.out.println("2. Eliminar usuario");
-                        System.out.println("3. Cambiar estado de usuario");
-                        System.out.println("4. Ver historial de prestamos");
-                        System.out.println("5. Ver todos los usuarios");
-                        System.out.println("6. Buscar usuario por id");
-                        System.out.println("7. Buscar usuario por nombre");
-                        System.out.println("0. Volver atrás");
-                        System.out.print("Elija una opción: ");
+                        System.out.println(" ////////////////");
+                        System.out.println(" Sistema de gestión de usuarios");
+                        System.out.println(" 1. Agregar usuario");
+                        System.out.println(" 2. Eliminar usuario");
+                        System.out.println(" 3. Cambiar estado de usuario");
+                        System.out.println(" 4. Ver historial de prestamos");
+                        System.out.println(" 5. Ver todos los usuarios");
+                        System.out.println(" 6. Buscar usuario por id");
+                        System.out.println(" 7. Buscar usuario por nombre");
+                        System.out.println(" 0. Volver atrás");
+                        System.out.print(" Elija una opción: ");
                         optionUser = scanner.nextInt();
 
                         switch (optionUser){

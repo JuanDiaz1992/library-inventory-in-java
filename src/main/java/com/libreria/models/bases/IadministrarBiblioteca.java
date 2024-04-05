@@ -8,4 +8,5 @@ public interface IadministrarBiblioteca {
     Recurso buscarTitulo(String titulo);
     void buscarPorAutor(String autor);
     void mostrarInventario();
+    void eliminarRecurso(Recurso recurso);
 }

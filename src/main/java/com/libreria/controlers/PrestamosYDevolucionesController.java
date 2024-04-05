@@ -20,21 +20,31 @@ public class PrestamosYDevolucionesController {
         System.out.print("Ingrese el ISBN del recurso: ");
         int isbn = scanner.nextInt();
         Recurso recurso = libreria.buscarIbsn(isbn);
-        if (recurso.getEstadoLibro() == EstadosLibros.DISPONIBLE){
+        if(recurso == null){
+            System.out.println("Recurso no encontrado.");
+        }else if (recurso.getEstadoLibro() == EstadosLibros.DISPONIBLE){
             System.out.println("+"+recurso.getTipoRecurso()+" "+recurso.getTitulo());
             Usuario usuario = GestorUsuariosController.consultarUsuarioPorId();
             if (usuario!=null && usuario.isEstadoCuenta()){
                 System.out.println("Usuario: "+ usuario.getNombre());
-                Prestamo prestamo = new Prestamo(recurso,usuario);
-                recurso.setEstadoLibro(EstadosLibros.PRESTADO);
-                prestamoList.add(prestamo);
-                System.out.println("Se realizo el prestamo, el usuario cuenta con 30 días para devolverlo");
+                System.out.println("Valida que los datos sean correctos");
+                System.out.println("1. Realizar prestamo");
+                System.out.println("2. Cancelar");
+                System.out.println("Selecciona una opción: ");
+                int confirmarPrestamo = scanner.nextInt();
+                if (confirmarPrestamo==1){
+                    Prestamo prestamo = new Prestamo(recurso,usuario);
+                    recurso.setEstadoLibro(EstadosLibros.PRESTADO);
+                    prestamoList.add(prestamo);
+                    System.out.println("Se realizo el prestamo, el usuario cuenta con 30 días para devolverlo");
+                }else{
+                    System.out.println("Solicitud de prestamo cancelada");
+                }
             }else{
-                System.out.println(usuario==null?"Usuario no encontrado":"USUARIO "+usuario.getNombre()+" BLOQUEADO POR RETRASOS");
+                System.out.println(usuario==null?"":"USUARIO "+usuario.getNombre()+" BLOQUEADO POR RETRASOS");
             }
-        }else if(recurso == null){
-            System.out.println("Recurso no encontrado.");
-        }else{
+        }
+        else{
             System.out.println("El recurso ingresado no puede ser prestado, se encuentra en estado '"+ recurso.getEstadoLibro()+"'");
         }
 
@@ -46,6 +56,7 @@ public class PrestamosYDevolucionesController {
         for (Prestamo prestamo: prestamoList){
             if (prestamo.getRecurso().getIsbn() == isbn ){
                 System.out.println(prestamo);
+                existeElPrestamo = true;
             }
         }
         if (!existeElPrestamo){
@@ -69,6 +80,7 @@ public class PrestamosYDevolucionesController {
             }
         }
         if (prestamo1!=null) {
+            System.out.println(recurso.getTipoRecurso()+" "+recurso.getTitulo()+", prestado a "+usuario.getNombre());
             if (prestamo1.isTieneMulta()) {
                 System.out.println("//////////////////////////////////////////////");
                 System.out.println(
