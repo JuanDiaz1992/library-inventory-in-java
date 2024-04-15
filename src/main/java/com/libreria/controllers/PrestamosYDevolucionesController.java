@@ -1,9 +1,9 @@
-package com.libreria.controlers;
+package com.libreria.controllers;
 
 import com.libreria.models.Libreria;
 import com.libreria.models.Prestamo;
 import com.libreria.models.Usuario;
-import com.libreria.models.bases.EstadosLibros;
+import com.libreria.models.bases.EstadosRecursos;
 import com.libreria.models.bases.Recurso;
 
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ public class PrestamosYDevolucionesController {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Prestamo> prestamoList = new ArrayList<>();
 
-
     /*Metodos*/
     public static void generarPrestamo(Libreria libreria){
         System.out.print("Ingrese el ISBN del recurso: ");
@@ -22,7 +21,7 @@ public class PrestamosYDevolucionesController {
         Recurso recurso = libreria.buscarIbsn(isbn);
         if(recurso == null){
             System.out.println("Recurso no encontrado.");
-        }else if (recurso.getEstadoLibro() == EstadosLibros.DISPONIBLE){
+        }else if (recurso.getEstadoLibro() == EstadosRecursos.DISPONIBLE){
             System.out.println("+"+recurso.getTipoRecurso()+" "+recurso.getTitulo());
             Usuario usuario = GestorUsuariosController.consultarUsuarioPorId();
             if (usuario!=null && usuario.isEstadoCuenta()){
@@ -34,7 +33,7 @@ public class PrestamosYDevolucionesController {
                 int confirmarPrestamo = scanner.nextInt();
                 if (confirmarPrestamo==1){
                     Prestamo prestamo = new Prestamo(recurso,usuario);
-                    recurso.setEstadoLibro(EstadosLibros.PRESTADO);
+                    recurso.setEstadoLibro(EstadosRecursos.PRESTADO);
                     prestamoList.add(prestamo);
                     System.out.println("Se realizo el prestamo, el usuario cuenta con 30 días para devolverlo");
                 }else{
@@ -102,7 +101,7 @@ public class PrestamosYDevolucionesController {
                     usuario.setEstadoCuenta(true);
                 }
                 usuario.agregarAlHistorialDePrestamos(recurso);
-                recurso.setEstadoLibro(EstadosLibros.DISPONIBLE);
+                recurso.setEstadoLibro(EstadosRecursos.DISPONIBLE);
                 System.out.println("La devolución se realizó correctamente");
             } else {
                 System.out.println("Se a cancelado el proceso de devolución");
@@ -114,13 +113,11 @@ public class PrestamosYDevolucionesController {
     }
 
 
-
-
 /***********************************************************************************************************************/
     //Estos métodos se crearon especificamente para usarse con lo datos ramdon que se ejecutan al iniciar el programa
     public static void generarPrestamoRecurso(Recurso recurso,Usuario usuario){
         Prestamo prestamo = new Prestamo(recurso,usuario);
-        recurso.setEstadoLibro(EstadosLibros.PRESTADO);
+        recurso.setEstadoLibro(EstadosRecursos.PRESTADO);
         prestamoList.add(prestamo);
         System.out.println("Se realizo el prestamo, el usuario cuenta con 30 días para devolverlo");
 

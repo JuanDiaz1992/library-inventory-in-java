@@ -1,13 +1,10 @@
 package com.libreria;
 
-import com.libreria.controlers.GestorUsuariosController;
-import com.libreria.controlers.PrestamosYDevolucionesController;
-import com.libreria.controlers.RecursosController;
+import com.libreria.controllers.GestorUsuariosController;
+import com.libreria.controllers.PrestamosYDevolucionesController;
+import com.libreria.controllers.RecursosController;
 import com.libreria.models.Libreria;
-import com.libreria.models.Libro;
-import com.libreria.models.Usuario;
-import com.libreria.scripts.MetodosEspeciales;
-import com.libreria.models.Revista;
+import com.libreria.scripts.Scripts;
 
 import java.util.Scanner;
 
@@ -18,7 +15,7 @@ public class Main {
         Libreria libreria = new Libreria();
         GestorUsuariosController usuariosController = new GestorUsuariosController();
 
-        MetodosEspeciales.agregarElementosRamdon(libreria);
+        Scripts.agregarElementosRamdon(libreria);
         //*************************************************************************************//
 
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +23,7 @@ public class Main {
         do {
             System.out.println("////////////////");
             System.out.println("MENU PRINCIPAL");
-            System.out.println("1) Agregar libro");
+            System.out.println("1) Agregar Recurso");
             System.out.println("2) Buscar por Título");
             System.out.println("3) Buscar por Autor");
             System.out.println("4) Mostrar inventario");
@@ -40,22 +37,22 @@ public class Main {
                 case 1:
                     System.out.println("Agregar libro");
                     RecursosController.agregar(libreria);
-                    MetodosEspeciales.pressEnter();
+                    Scripts.pressEnter();
                     break;
                 case 2:
                     System.out.println("Buscar recurso por título");
                     RecursosController.buscarPorTitulo(libreria);
-                    MetodosEspeciales.pressEnter();
+                    Scripts.pressEnter();
                     break;
                 case 3:
                     System.out.println("Buscar recurso por autor");
                     RecursosController.buscarPorAutor(libreria);
-                    MetodosEspeciales.pressEnter();
+                    Scripts.pressEnter();
                     break;
                 case 4:
                     System.out.println("Mostrar inventario");
                     RecursosController.verInventario(libreria);
-                    MetodosEspeciales.pressEnter();
+                    Scripts.pressEnter();
                     break;
                 case 5:
                     System.out.println(" ////////////////");
@@ -88,17 +85,17 @@ public class Main {
                             case 1:
                                 System.out.println("Realizar prestamo");
                                 PrestamosYDevolucionesController.generarPrestamo(libreria);
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 2:
                                 System.out.println("Devolver");
                                 PrestamosYDevolucionesController.devolverRecurso();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 3:
                                 System.out.println("Ver estado de prestamo");
                                 PrestamosYDevolucionesController.getPrestamo();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             default:
                                 System.out.println("Elija una opción valida");
@@ -127,37 +124,37 @@ public class Main {
                             case 1:
                                 System.out.println("Agregar usuario");
                                 GestorUsuariosController.agregarUsuario();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 2:
                                 System.out.println("Eliminar usuario");
                                 GestorUsuariosController.eliminarUsuario();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 3:
                                 System.out.println("Cambiar estado de usuario");
                                 GestorUsuariosController.cambiarEstado();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 4:
                                 System.out.println("Ver historial de prestamos");
                                 GestorUsuariosController.buscarUsuarioYVerHistorial();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 5:
                                 System.out.println("Ver todos los usuarios");
                                 GestorUsuariosController.verTodosLosUsuarios();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 6:
                                 System.out.println("Buscar usuario por id");
                                 System.out.println(GestorUsuariosController.consultarUsuarioPorId());
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             case 7:
                                 System.out.println("Buscar usuario por nombre");
                                 GestorUsuariosController.consultarUsuarioPorNombre();
-                                MetodosEspeciales.pressEnter();
+                                Scripts.pressEnter();
                                 break;
                             default:
                                 System.out.println("Elija una opción valida");

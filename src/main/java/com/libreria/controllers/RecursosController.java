@@ -1,11 +1,11 @@
-package com.libreria.controlers;
+package com.libreria.controllers;
 
 import com.libreria.models.Libreria;
 import com.libreria.models.Libro;
 import com.libreria.models.Revista;
-import com.libreria.models.bases.EstadosLibros;
+import com.libreria.models.bases.EstadosRecursos;
 import com.libreria.models.bases.Recurso;
-import com.libreria.scripts.MetodosEspeciales;
+import com.libreria.scripts.Scripts;
 
 import java.util.Scanner;
 
@@ -51,12 +51,11 @@ public class RecursosController {
         System.out.println("El valor ingresado es incorrecto, intentelo de nuevo");
     }
 }
-
     public static void buscarPorTitulo(Libreria libreria){
         System.out.println("Oprima enter");
         scanner.nextLine();
         System.out.print("Ingrese el nombre del recurso (No es sensible a mayúsculas o minúsculas): ");
-        Recurso recurso = libreria.buscarTitulo(MetodosEspeciales.capitalizeFirstCharacter(scanner.nextLine()));
+        Recurso recurso = libreria.buscarTitulo(Scripts.capitalizeFirstCharacter(scanner.nextLine()));
         if (recurso!=null){
             System.out.println("Se encontro una coincidencia: ");
             System.out.println(recurso);
@@ -75,17 +74,16 @@ public class RecursosController {
     public static void verInventario(Libreria libreria){
         libreria.mostrarInventario();
     }
-
     public static void editarRecurso(Libreria libreria) {
         System.out.print("Ingrese el ISBN del recurso: ");
         int isbn = scanner.nextInt();
         Recurso recurso = libreria.buscarIbsn(isbn);
         if (recurso == null){
             System.out.println("Recurso no encontrado");
-            MetodosEspeciales.pressEnter();
-        }else if(recurso.getEstadoLibro() != EstadosLibros.DISPONIBLE){
+            Scripts.pressEnter();
+        }else if(recurso.getEstadoLibro() != EstadosRecursos.DISPONIBLE){
             System.out.println("El recurso no puede ser modificado ya que se en estado: "+ recurso.getEstadoLibro());
-            MetodosEspeciales.pressEnter();
+            Scripts.pressEnter();
         }else{
             int opcionModificar;
             do {System.out.println("  ////////////////");
@@ -109,7 +107,7 @@ public class RecursosController {
                         recurso.setTitulo(titulo);
                         libreria.agregar(recurso); //Aquí se guarda nuevamente en la librería con el nuevo titulo
                         System.out.println("Titulo cambiado correctamente");
-                        MetodosEspeciales.pressEnter();
+                        Scripts.pressEnter();
                         break;
                     case 2:
                         System.out.println("Autor");
@@ -118,7 +116,7 @@ public class RecursosController {
                         String autor = scanner.nextLine();
                         recurso.setAutor(autor);
                         System.out.println("Autor cambiado correctamente");
-                        MetodosEspeciales.pressEnter();
+                        Scripts.pressEnter();
                         break;
                     case 3:
                         System.out.println("Editorial");
@@ -127,7 +125,7 @@ public class RecursosController {
                         String editorial = scanner.nextLine();
                         recurso.setEditorial(editorial);
                         System.out.println("Editorial cambiada correctamente");
-                        MetodosEspeciales.pressEnter();
+                        Scripts.pressEnter();
                         break;
                     case 4:
                         System.out.println("Año publicación");
@@ -135,7 +133,7 @@ public class RecursosController {
                         int anho = scanner.nextInt();
                         recurso.setAnhoPublicacion(anho);
                         System.out.println("Año de Publicación cambiado correctamente ");
-                        MetodosEspeciales.pressEnter();
+                        Scripts.pressEnter();
                         break;
                     case 5:
                         System.out.println("Precio");
@@ -143,7 +141,7 @@ public class RecursosController {
                         double precio = scanner.nextInt();
                         recurso.setPrecio(precio);
                         System.out.println("Precio cambiado correctamente");
-                        MetodosEspeciales.pressEnter();
+                        Scripts.pressEnter();
                         break;
                     case 0:
                         break;
@@ -153,17 +151,16 @@ public class RecursosController {
             }while (opcionModificar !=0);
         }
     }
-
     public static void eliminarRecurso(Libreria libreria) {
         System.out.print("Ingrese el ISBN del recurso: ");
         int isbn = scanner.nextInt();
         Recurso recurso = libreria.buscarIbsn(isbn);
         if (recurso == null){
             System.out.println("Recurso no encontrado");
-            MetodosEspeciales.pressEnter();
-        }else if(recurso.getEstadoLibro() != EstadosLibros.DISPONIBLE){
+            Scripts.pressEnter();
+        }else if(recurso.getEstadoLibro() != EstadosRecursos.DISPONIBLE){
             System.out.println("El recurso no puede ser eliminado ya que se encuentra en estado: "+ recurso.getEstadoLibro());
-            MetodosEspeciales.pressEnter();
+            Scripts.pressEnter();
         }else{
             System.out.println("Está seguro que desea eliminar el recurso: ");
             System.out.println(recurso);
@@ -176,7 +173,7 @@ public class RecursosController {
                 libreria.eliminarRecurso(recurso);
             }else {
                 System.out.println("Solicitud de eliminación cancelada");
-                MetodosEspeciales.pressEnter();
+                Scripts.pressEnter();
             }
         }
     }

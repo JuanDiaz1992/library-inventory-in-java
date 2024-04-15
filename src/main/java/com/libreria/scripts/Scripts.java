@@ -1,13 +1,13 @@
 package com.libreria.scripts;
 
-import com.libreria.controlers.GestorUsuariosController;
-import com.libreria.controlers.PrestamosYDevolucionesController;
+import com.libreria.controllers.GestorUsuariosController;
+import com.libreria.controllers.PrestamosYDevolucionesController;
 import com.libreria.models.*;
 import com.libreria.models.bases.Recurso;
 
 import java.util.Scanner;
 
-public class MetodosEspeciales {
+public class Scripts {
     public static String capitalizeFirstCharacter (String texto) {
         if (texto == null || texto.isEmpty()) {
             return texto;
@@ -20,6 +20,7 @@ public class MetodosEspeciales {
         System.out.println("Presiona Enter para continúar");
         scanner.nextLine();
     }
+
     public static void agregarElementosRamdon(Libreria libreria){
         //Los siguientes datos se añaden solo para probar las demás funciones sin necesidad de agregar nuevos datos
         Recurso recurso = new Libro("La sombra del viento", "Carlos Ruiz Zafón", "Planeta", 2015, 15000.0, "Libro");
@@ -31,7 +32,7 @@ public class MetodosEspeciales {
         libreria.agregar(new Libro("El amor en los tiempos del cólera", "Gabriel Garcia", "Sudamericana", 1985, 13000.0, "Libro"));
 
         //Se crean usuarios Ramdon
-        Usuario usuario = new Usuario("Juan Camilo Díaz Valencia",32);
+        Usuario usuario = new Usuario("Pedro Pablo Patiño Perez",32);
         GestorUsuariosController.agregarUsuario(usuario);
         GestorUsuariosController.agregarUsuario(new Usuario("María Fernanda López Gómez", 28));
         GestorUsuariosController.agregarUsuario(new Usuario("Luis Alberto Ramírez Rodríguez", 35));

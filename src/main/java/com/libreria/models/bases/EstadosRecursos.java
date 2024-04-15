@@ -1,6 +1,6 @@
 package com.libreria.models.bases;
 
-public enum EstadosLibros {
+public enum EstadosRecursos {
     DISPONIBLE,
     PRESTADO,
     RETRASADO,

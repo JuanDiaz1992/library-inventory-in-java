@@ -1,4 +1,4 @@
-package com.libreria.controlers;
+package com.libreria.controllers;
 
 import com.libreria.models.Usuario;
 
@@ -11,9 +11,7 @@ public class GestorUsuariosController {
     private static List<Usuario> usuarioList = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
     public GestorUsuariosController(){}
-    public static void agregarUsuario(Usuario usuario){
-        usuarioList.add(usuario);
-    }
+
     public static void agregarUsuario(){
         try{
             System.out.println("Oprima enter");
@@ -70,15 +68,6 @@ public class GestorUsuariosController {
         }
 
     }
-    public static Usuario consultarUsuarioPorId(int id){
-        Usuario usuarioBuscado = null;
-        for (Usuario usuario: usuarioList){
-            if (usuario.getId()== id){
-                usuarioBuscado =  usuario;
-            }
-        }
-        return usuarioBuscado;
-    }
     public static Usuario consultarUsuarioPorId(){
         System.out.print("Ingrese el id del usuario: ");
         int id = scanner.nextInt();
@@ -130,5 +119,20 @@ public class GestorUsuariosController {
             System.out.println("No hay usuarios registrados");
         }
 
+    }
+
+
+
+    public static void agregarUsuario(Usuario usuario){
+        usuarioList.add(usuario);
+    }
+    public static Usuario consultarUsuarioPorId(int id){
+        Usuario usuarioBuscado = null;
+        for (Usuario usuario: usuarioList){
+            if (usuario.getId()== id){
+                usuarioBuscado =  usuario;
+            }
+        }
+        return usuarioBuscado;
     }
 }

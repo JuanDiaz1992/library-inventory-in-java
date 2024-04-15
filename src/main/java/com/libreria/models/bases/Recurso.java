@@ -1,6 +1,6 @@
 package com.libreria.models.bases;
 
-import com.libreria.scripts.MetodosEspeciales;
+import com.libreria.scripts.Scripts;
 
 public class Recurso {
 
@@ -12,23 +12,23 @@ public class Recurso {
     protected int anhoPublicacion;
     protected double precio;
     protected String tipoRecurso;
-    protected EstadosLibros estadoLibro = EstadosLibros.DISPONIBLE;
+    protected EstadosRecursos estadoLibro = EstadosRecursos.DISPONIBLE;
 
     public Recurso(String titulo, String autor, String editorial, int anhoPublicacion, double precio, String tipoRecurso){
         this.isbn = ++contadorIsbn;
-        this.titulo = MetodosEspeciales.capitalizeFirstCharacter(titulo);
+        this.titulo = Scripts.capitalizeFirstCharacter(titulo);
         this.autor = autor.toUpperCase();
-        this.editorial = MetodosEspeciales.capitalizeFirstCharacter(editorial);
+        this.editorial = Scripts.capitalizeFirstCharacter(editorial);
         this.anhoPublicacion = anhoPublicacion;
         this.precio = precio;
         this.tipoRecurso = tipoRecurso;
     }
 
-    public EstadosLibros getEstadoLibro() {
+    public EstadosRecursos getEstadoLibro() {
         return estadoLibro;
     }
 
-    public void setEstadoLibro(EstadosLibros estadoLibro) {
+    public void setEstadoLibro(EstadosRecursos estadoLibro) {
         this.estadoLibro = estadoLibro;
     }
 
@@ -37,7 +37,7 @@ public class Recurso {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = MetodosEspeciales.capitalizeFirstCharacter(titulo);
+        this.titulo = Scripts.capitalizeFirstCharacter(titulo);
     }
 
     public String getAutor() {
@@ -61,7 +61,7 @@ public class Recurso {
     }
 
     public void setEditorial(String editorial) {
-        this.editorial = MetodosEspeciales.capitalizeFirstCharacter(editorial) ;
+        this.editorial = Scripts.capitalizeFirstCharacter(editorial) ;
     }
 
     public int getAnhoPublicacion() {

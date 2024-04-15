@@ -1,6 +1,6 @@
 package com.libreria.models;
 
-import com.libreria.models.bases.EstadosLibros;
+import com.libreria.models.bases.EstadosRecursos;
 import com.libreria.models.bases.Recurso;
 
 public class Prestamo {
@@ -19,11 +19,11 @@ public class Prestamo {
         if (contadorDias>cantDiasPrestamo && contadorDias<120){
             this.tieneMulta = true;
             this.valorMulta = 100*(contadorDias-cantDiasPrestamo);
-            this.recurso.setEstadoLibro(EstadosLibros.RETRASADO);
+            this.recurso.setEstadoLibro(EstadosRecursos.RETRASADO);
             this.usuario.setEstadoCuenta(false);
         }else if (contadorDias>120){
             this.valorMulta = this.recurso.getPrecio();
-            this.recurso.setEstadoLibro(EstadosLibros.RETRASADO);
+            this.recurso.setEstadoLibro(EstadosRecursos.RETRASADO);
             this.usuario.setEstadoCuenta(false);
         }else{
             System.out.println("El recurso se encuentra dentro de los plazos establecidos para el prestamo");
